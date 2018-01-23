@@ -11,15 +11,20 @@ Plug 'tpope/vim-fugitive'
 " Text editing
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+let NERDSpaceDelims = 1
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
+
+" Autocomplete
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 
 " Linting
 Plug 'w0rp/ale'
 
 " Search
 Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Display
 Plug 'vim-airline/vim-airline'
@@ -36,6 +41,9 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'tomasr/molokai'
 Plug 'cdmedia/itg_flat_vim'
 
+" Wakatime
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 
 " NERDTree
@@ -49,9 +57,20 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+
+" YouCompleteMe
+" " Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
 
 " Airline
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extension#tabline#enabled = 1
 
 " vim-jsx - don't require .jsx extension
 let g:jsx_ext_required = 0
@@ -75,6 +94,13 @@ set backspace=eol,start,indent
 " colon remap
 noremap : ;
 noremap ; :
+
+
+let mapleader = ","
+let g:mapleader = ","
+
+" Ack search
+map <leader>a ;Ack!<space>
 
 " disable arrow keys
 noremap <Left> :echoe "Use H"<CR>
@@ -109,7 +135,6 @@ map <F10> :set pastetoggle<CR>
 
 " Enable syntax highlighting
 syntax on
-set termguicolors
 
 " Themes
 colorscheme molokai
