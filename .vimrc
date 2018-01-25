@@ -18,6 +18,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Autocomplete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+Plug 'raimondi/delimitmate'
 
 " Linting
 Plug 'w0rp/ale'
@@ -28,7 +29,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Display
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-theme'
+Plug 'vim-airline/vim-airline-themes'
 
 " Syntax Highlighting
 Plug 'tpope/vim-markdown'
