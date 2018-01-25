@@ -30,7 +30,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u > [\[$(tput setaf 1)\]\W\[$(tp
 
 # list of alias
 alias ..='cd ..'
-alias ll='ls -l'
+alias ll='ls -al'
 alias gg='git status'
 alias gs='git status -s'
 alias gd='git diff'
