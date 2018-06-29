@@ -3,7 +3,7 @@
 """""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } 
+Plug 'scrooloose/nerdtree'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
@@ -19,13 +19,14 @@ Plug 'easymotion/vim-easymotion'
 " Autocomplete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'raimondi/delimitmate'
+Plug 'alvan/vim-closetag'
 
 " Linting
 Plug 'w0rp/ale'
 
 " Search
-Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Display
 Plug 'vim-airline/vim-airline'
@@ -41,9 +42,6 @@ Plug 'jelera/vim-javascript-syntax'
 " Colorschemes
 Plug 'tomasr/molokai'
 Plug 'cdmedia/itg_flat_vim'
-
-" Wakatime
-Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -69,6 +67,9 @@ let g:ycm_enable_diagnostic_highlighting = 0
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 
+" Close tag
+let g:closetag_filenames = '*.html,*.js'
+
 " Airline
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extension#tabline#enabled = 1
@@ -76,11 +77,8 @@ let g:airline#extension#tabline#enabled = 1
 " vim-jsx - don't require .jsx extension
 let g:jsx_ext_required = 0
 
-" ctrl-p settings
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
- \ 'file': '\.so$\|\.dat$|\.DS_Store$'
- \ }
+" fzf settings
+nnoremap <silent> <C-p> :GFiles<CR>
 
 " disable netrw banner
 let g:netrw_banner=0
