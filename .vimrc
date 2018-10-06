@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 "         Plugin Manager        "
 """""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 
 " Text editing
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 let NERDSpaceDelims = 1
 
@@ -33,14 +33,22 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Syntax Highlighting
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-markdown'
+Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'kchmck/vim-coffee-script'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'jparise/vim-graphql'
+Plug 'chrisbra/csv.vim'
 
 " Colorschemes
-Plug 'tomasr/molokai'
 Plug 'cdmedia/itg_flat_vim'
 
 call plug#end()
@@ -68,7 +76,7 @@ set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 
 " Close tag
-let g:closetag_filenames = '*.html,*.js'
+let g:closetag_filenames = '*.html,*.js,*.jsx'
 
 " Airline
 let g:airline#extensions#ale#enabled = 1
@@ -94,19 +102,19 @@ set backspace=eol,start,indent
 noremap : ;
 noremap ; :
 
+" Fixes ESC delay
+set timeoutlen=1000
+set ttimeoutlen=0
+
 
 let mapleader = ","
 let g:mapleader = ","
-
-" Ack search
-map <leader>a ;Ack!<space>
 
 " disable arrow keys
 noremap <Left> :echoe "Use H"<CR>
 noremap <Right> :echoe "Use L"<CR>
 noremap <Up> :echoe "Use K"<CR>
 noremap <Down> :echoe "Use J"<CR>
-
 
 " move between buffers
 noremap <c-j> <c-w>j
@@ -116,6 +124,7 @@ noremap <c-h> <c-w>h
 
 " ESC w/ jk
 inoremap jk <ESC>
+nnoremap <leader>q :q<CR>
 
 " Allow mouse scroll
 set mouse=n
@@ -136,7 +145,7 @@ map <F10> :set pastetoggle<CR>
 syntax on
 
 " Themes
-colorscheme molokai
+colorscheme itg_flat
 
 set background=dark
 
