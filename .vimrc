@@ -11,20 +11,19 @@ Plug 'tpope/vim-fugitive'
 " Text editing
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-let NERDSpaceDelims = 1
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
 
 " Autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'raimondi/delimitmate'
 Plug 'alvan/vim-closetag'
 
 " Linting
 Plug 'w0rp/ale'
 
-" Search
+" File Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -55,11 +54,13 @@ call plug#end()
 
 " NERDTree
 map <F2> ;NERDTreeToggle<CR>
+let NERDSpaceDelims = 1
 
 " ALE
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier','eslint'],
 \}
+" \   '*': ['rubocop'],
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
@@ -106,7 +107,6 @@ noremap ; :
 set timeoutlen=1000
 set ttimeoutlen=0
 
-
 let mapleader = ","
 let g:mapleader = ","
 
@@ -136,6 +136,8 @@ set noswapfile
 set clipboard=unnamed
 map <F10> :set pastetoggle<CR>
 
+" remove search highlighting
+nnoremap <leader><Enter> :noh<CR>
 
 """""""""""""""""""""
 "   COLORS/SYNTAX   " 
@@ -171,9 +173,11 @@ retab
 
 " Don't auto indent
 set noai
-"Always show current position
+" Always show current position
 set ruler
 set shiftwidth=2
 set relativenumber
 set number
 
+" Disable automatic new line
+set nofixendofline
