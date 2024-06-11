@@ -176,7 +176,6 @@ set noai
 " Always show current position
 set ruler
 set shiftwidth=2
-set relativenumber
 set number
 
 " Disable automatic new line
