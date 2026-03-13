@@ -8,13 +8,15 @@ fi
 # If you come from bash you might have to change your $PATH.  # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/scottshin/.oh-my-zsh"
+export ZSH="/Users/sshin/.oh-my-zsh"
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="theunraveler"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -104,13 +106,14 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v="vim ."
+alias v="nvim ."
 alias rz="source ~/.zshrc"
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
+alias zshconfig="nvim ~/.zshrc"
+alias vimconfig="nvim ~/.vimrc"
+alias nvimconfig="nvim ~/.config/nvim/init.lua"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 
-alias launch="/Users/scottshin/Medely/medely/launch.sh"
+alias launch="/Users/sshin/Medely/medely/launch.sh"
 
 alias mdstart="wd md; rails s --binding=0.0.0.0"
 alias mdcstart="wd md; ./bin/webpack-dev-server"
@@ -126,36 +129,31 @@ alias kikstart="wd md;bundle exec sidekiq"
 alias gcstage='gcloud config set project medely-staging && gcloud config set compute/zone us-west1 && gcloud container clusters get-credentials medely-staging && POD=$(kubectl get pods -l app=medely --field-selector=status.phase==Running -n staging -o jsonpath="{.items[0].metadata.name}") && kubectl exec -it $POD -n staging -- /bin/bash'
 alias gcroles='gcloud config set project medely-staging && gcloud config set compute/zone us-west1 && gcloud container clusters get-credentials medely-staging && POD=$(kubectl get pods -l app=medely-roles --field-selector=status.phase==Running -n roles -o jsonpath="{.items[0].metadata.name}") && kubectl exec -it $POD -n roles -- /bin/bash'
 alias gcfeature='gcloud config set project medely-staging && gcloud config set compute/zone us-west1 && gcloud container clusters get-credentials medely-staging && POD=$(kubectl get pods -l app=medely-feature --field-selector=status.phase==Running -n feature -o jsonpath="{.items[0].metadata.name}") && kubectl exec -it $POD -n feature -- /bin/bash'
+alias gcdemo='gcloud config set project medely-staging && gcloud config set compute/zone us-west1 && gcloud container clusters get-credentials medely-staging && POD=$(kubectl get pods -l app=medely-demo --field-selector=status.phase==Running -n demo -o jsonpath="{.items[0].metadata.name}") && kubectl exec -it $POD -n demo -- /bin/bash'
 alias gcprod='gcloud config set project medely-production && gcloud config set compute/zone us-west1 && gcloud container clusters get-credentials medely && POD=$(kubectl get pods -l app=medely --field-selector=status.phase==Running -o jsonpath="{.items[0].metadata.name}") && kubectl exec -it $POD -- /bin/bash'
 
 # PG proxy
-alias stagepx="~/cloud_sql_proxy -instances=medely-staging:us-west1:med-staging-14=tcp:5435"
-alias prodpx="~/cloud_sql_proxy -instances=medely-production:us-west1:medely-production-replica-15=tcp:5433"
+alias stagepx="~/cloud_sql_proxy 'medely-staging:us-west1:med-staging-14?port=5435'"
+alias prodpx="~/cloud_sql_proxy 'medely-production:us-west1:medely-production-replica-17?port=5433'"
 alias pgdump="pg_dump -h 127.0.0.1 -p 5433 -U postgres -Fc --no-owner --exclude-table-data audits --no-acl medely_production > ~/Downloads/backup.sql"
 alias pgrestore="pg_restore -U postgres ~/Downloads/backup.sql -e -O -d medely_development"
 
 # Git aliases
-alias gpod="git pull origin dev"
-alias gpos="git pull origin staging"
-alias gpos="git pull origin feature-deploy"
 alias grhh="git reset --hard head"
-alias gpo="git pull origin"
-
+alias gpo="ggpull"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/scottshin/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/scottshin/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/sshin/Medely/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sshin/Medely/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/scottshin/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/scottshin/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/sshin/Medely/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sshin/Medely/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add NVM to PATH for scripting
 export NVM_DIR="$HOME/.nvm"
-
 
 # Google Cloud SDK PYTHON Path
 export CLOUDSDK_PYTHON="/usr/bin/python3"
@@ -166,4 +164,6 @@ export CLOUDSDK_PYTHON="/usr/bin/python3"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
