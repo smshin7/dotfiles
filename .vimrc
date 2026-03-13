@@ -1,12 +1,13 @@
 """"""""""""""""""""""""""""""""
-"         Plugin Manager        "
-"""""""""""""""""""""""""""""""""
+"         Plugin Manager       "
+""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
 
 " Text editing
 Plug 'tpope/vim-commentary'
@@ -59,8 +60,8 @@ let NERDSpaceDelims = 1
 " ALE
 let g:ale_fixers = {
 \   'javascript': ['prettier','eslint'],
+\   '*': ['rubocop'],
 \}
-" \   '*': ['rubocop'],
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
@@ -169,7 +170,6 @@ set smarttab
 set expandtab
 " 1 tab == 2 spaces
 set tabstop=2
-retab
 
 " Don't auto indent
 set noai
